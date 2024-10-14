@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Shop from './pages/Shop';
+import ContactForm from './components/ContactForm';
+import ItemDetailContainer from './components/ItemDetailContainer';
+import NotFound from './components/NotFound';
+import Cart from './components/Cart'; // Asegúrate de importar el componente Cart
+import { CartProvider } from './contexts/CartContext';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <CartProvider>
+            <Router>
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/shop" element={<Shop />} />
+                    <Route path="/contact" element={<ContactForm />} />
+                    <Route path="/cart" element={<Cart />} /> {/* Ruta para el carrito */}
+                    <Route path="/item/:id" element={<ItemDetailContainer />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+                <Footer />
+            </Router>
+        </CartProvider>
+    );
+};
 
 export default App;
