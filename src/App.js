@@ -7,7 +7,7 @@ import Shop from './pages/Shop';
 import ContactForm from './components/ContactForm';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import NotFound from './components/NotFound';
-import Cart from './components/Cart'; // Asegúrate de importar el componente Cart
+import Cart from './components/Cart';
 import { CartProvider } from './contexts/CartContext';
 
 const App = () => {

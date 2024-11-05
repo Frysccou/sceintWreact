@@ -2,8 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { useCart } from '../contexts/CartContext';
 
 const Navbar = () => {
+    const { cart } = useCart();
+
+    const totalItems = cart.reduce((acc, product) => acc + product.quantity, 0);
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
@@ -23,7 +28,10 @@ const Navbar = () => {
                             <Link className="nav-link" to="/contact">Contacto</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/cart"><FontAwesomeIcon icon={faShoppingCart} /></Link>
+                            <Link className="nav-link" to="/cart">
+                                <FontAwesomeIcon icon={faShoppingCart} />
+                                {totalItems > 0 && <span className="badge bg-secondary ms-1">{totalItems}</span>} {/* Muestra el total de articulos */}
+                            </Link>
                         </li>
                     </ul>
                 </div>

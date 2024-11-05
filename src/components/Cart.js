@@ -1,5 +1,7 @@
+// src/components/Cart.js
 import React from 'react';
 import { useCart } from '../contexts/CartContext';
+import OrderForm from './OrderForm';
 
 const Cart = () => {
     const { cart, removeFromCart } = useCart();
@@ -21,6 +23,7 @@ const Cart = () => {
                         ))}
                     </ul>
                     <h3>Total: ${total}</h3>
+                    <OrderForm /> {/* Mostrar el formulario de order */}
                 </div>
             )}
         </div>

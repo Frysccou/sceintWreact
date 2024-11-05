@@ -1,11 +1,17 @@
+// src/components/CartWidget.js
 import React from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
+import { useCart } from '../contexts/CartContext';
 
 const CartWidget = () => {
+    const { cart } = useCart();
+
+    const totalItems = cart.reduce((acc, product) => acc + product.quantity, 0);
+
     return (
         <div>
             <FaShoppingCart />
-            <span className="badge bg-secondary">0</span>
+            {totalItems > 0 && <span className="badge bg-secondary">{totalItems}</span>}
         </div>
     );
 };
